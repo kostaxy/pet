@@ -89,7 +89,7 @@
                     for (let i = 0; i < response.data.length; i++) {
                         appointment = {
                             id: response.data[i].id,
-                            date: new Date(response.data[i].dateAppointment).toLocaleString('ru-Ru'),
+                            date: new Date(response.data[i].dateAppointment),
                             ownerName: response.data[i].ownerFirstName + ' ' + response.data[i].ownerLastName,
                             animal: response.data[i].animal,
                             reason: response.data[i].reason,
@@ -112,7 +112,11 @@
         watch: {
             selectedSort(compareField) {
                 this.appointments.sort( (a,b) => {
-                    return a[compareField]?.localeCompare(b[compareField])
+                    if (typeof a[compareField] === 'string') {
+                        return a[compareField]?.localeCompare(b[compareField])
+                    } else {
+                        return new Date(a[compareField]).getTime() - new Date(b[compareField]).getTime()
+                    }
                 })
             }
         }

@@ -1,15 +1,22 @@
 <template>
     <div class="employee">
-        <div class="top__content">
-            <div class="date">
-                <b>Time:</b> <i>{{employee.date}}</i>
+
+        <div class="info">
+            <div>
+                <img class="avatar" :src=employee.imgUrl>
             </div>
-            <div class="action_buttons">
-                <div
-                        class="icon_btn"
-                >
-                    <i class="fa-regular fa-pen-to-square"></i>
+            <div class="text_info">
+                <div>
+                    <b>Doctor:</b>
+                    {{employee.doctorName}}
                 </div>
+                <div>
+                    <b>Adress:</b>
+                    {{employee.adress}}
+                </div>
+            </div>
+
+            <div class="action_buttons">
                 <div
                         class="icon_btn"
                         @click="$emit('removeEmployee',employee)"
@@ -17,26 +24,6 @@
                     <i class="fa-regular fa-trash-can"></i>
                 </div>
             </div>
-        </div>
-        <div class="info">
-            <div>
-                <b>Owner name:</b>
-                {{employee.ownerName}}
-            </div>
-            <div>
-                <b>Animal:</b>
-                {{employee.animal}}
-            </div>
-            <div>
-                <b>Reason:</b>
-                {{employee.reason}}
-            </div>
-            <div>
-                <b>Doctor:</b>
-                {{employee.doctor}}
-            </div>
-        </div>
-        <div>
         </div>
     </div>
 </template>
@@ -69,16 +56,16 @@
         align-items: center;
         justify-content: space-between;
     }
-    .top__content {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+
+    .avatar {
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
     }
 
     .action_buttons {
         display: flex;
+        margin-left: auto;
     }
 
     .icon_btn {
@@ -87,7 +74,12 @@
         cursor: pointer;
     }
     .info {
+        display: flex;
+        align-items: center;
         width: 100%;
         margin-top: 10px;
+    }
+    .text_info {
+        margin-left: 20px;
     }
 </style>

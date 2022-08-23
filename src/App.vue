@@ -18,11 +18,13 @@
 
     html,
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif !important;
     }
-
+    button {
+        font-family: 'Poppins', sans-serif !important;
+    }
     #app {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     * {

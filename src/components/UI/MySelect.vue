@@ -1,5 +1,5 @@
 <template>
-    <select v-model="modelValue" @change="changeOption">
+    <select class="select" v-model="modelValue" @change="changeOption">
         <option disabled value="">Choose the sort field</option>
         <option
             v-for="option in options"
@@ -32,5 +32,10 @@
 </script>
 
 <style scoped>
-
+    .select {
+        height: 33px;
+        font-family: 'Poppins', sans-serif !important;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 </style>

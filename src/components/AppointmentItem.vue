@@ -2,7 +2,7 @@
     <div class="appointment">
         <div class="top__content">
             <div class="date">
-                <b>Time:</b> <i>{{appointment.date}}</i>
+                <b>Time:</b> <i>{{appointment.date.toLocaleString('ru-Ru')}}</i>
             </div>
             <div class="action_buttons">
                 <div

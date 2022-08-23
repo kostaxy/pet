@@ -26,7 +26,7 @@
 <script>
     import EmployeeItem from "@/components/EmployeeItem";
     export default {
-        components: {EmployeeItem, EmployeeItem},
+        components: {EmployeeItem},
         props: {
             employees: {
                 type: Array,

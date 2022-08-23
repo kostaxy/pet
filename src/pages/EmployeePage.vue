@@ -30,18 +30,6 @@
                 employees: [],
                 dialogVisible: false,
                 isEmployeesLoading: false,
-                selectedSort: '',
-                sortOptions: [
-                    {
-                        value: 'date',
-                        name: "Date"
-                    },
-                    {
-                        value: 'ownerName',
-                        name: "Owner name"
-                    },
-
-                ]
             }
         },
         methods: {
@@ -58,7 +46,7 @@
             async fetchEmployees() {
                 try {
                     this.isEmployeesLoading = true
-                    let response = await axios.get('https://run.mocky.io/v3/886cab0c-2300-45df-8b57-2b751d16becc',{
+                    let response = await axios.get('https://run.mocky.io/v3/3526a901-6007-4f94-823b-24c5f87a49d2',{
                         params: {
                             _page: 1,
                             _limit: 2
@@ -74,11 +62,9 @@
                     for (let i = 0; i < response.data.length; i++) {
                         employee = {
                             id: response.data[i].id,
-                            date: new Date(response.data[i].dateAppointment).toLocaleString('ru-Ru'),
-                            ownerName: response.data[i].ownerFirstName + ' ' + response.data[i].ownerLastName,
-                            animal: response.data[i].animal,
-                            reason: response.data[i].reason,
-                            doctor: response.data[i].doctor,
+                            doctorName: response.data[i].firstName + ' ' + response.data[i].lastName,
+                            adress: response.data[i].adress,
+                            imgUrl: response.data[i].imgUrl,
                         }
                         this.employees.push(employee)
                     }
@@ -94,13 +80,6 @@
         mounted() {
             this.fetchEmployees()
         },
-        watch: {
-            selectedSort(compareField) {
-                this.employees.sort( (a,b) => {
-                    return a[compareField]?.localeCompare(b[compareField])
-                })
-            }
-        }
     }
 
 </script>
