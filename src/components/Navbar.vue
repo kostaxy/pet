@@ -3,7 +3,7 @@
         <div class="navbar__buttons">
             <my-button @click="$router.push('/appointments')">Appointments</my-button>
             <my-button @click="$router.push('/employee')">Doctors</my-button>
-            <my-button>Logout</my-button>
+            <my-button @click="$store.commit('logout')">Logout</my-button>
         </div>
     </div>
 </template>
