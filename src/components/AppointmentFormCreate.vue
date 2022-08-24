@@ -2,9 +2,13 @@
     <form @submit.prevent class="appointment_create__form">
         <Datepicker
             v-model="date"
+            placeholder="Select Date"
         />
-        <div v-if="!isDateCorrect">
-            <span style="color: red; font-size: 12px">Choose a date larger than the current</span>
+        <div
+            v-if="!isDateCorrect"
+            class="error_input__container"
+        >
+            <span class="error_input__text">Choose a date larger than the current</span>
         </div>
         <my-input
             v-model="appointment.ownerName"
@@ -31,8 +35,11 @@
             placeholder="test"
         ></my-select>
 
-        <div v-if="!isFieldsCorrect">
-            <span style="color: red; font-size: 12px">Choose a date larger than the current</span>
+        <div
+            class="error_input__container"
+            v-if="!isFieldsCorrect"
+        >
+            <span class="error_input__text">Fill in all the fields</span>
         </div>
         <my-button
             class="btn__create"
@@ -62,7 +69,7 @@
                     ownerName: null,
                     animal: null,
                     reason: null,
-                    doctorName: null,
+                    doctor: null,
                     doctorId: null,
                 },
                 doctors: [],
@@ -74,8 +81,15 @@
             createAppointment() {
                 this.appointment.id = Date.now()
 
+
                 if (typeof this.date !== 'undefined' && this.date.getTime() > new Date().getTime()) {
-                    if (true) {
+                    if (
+                        (this.appointment.animal !== null && this.appointment.animal !== '') &&
+                        (this.appointment.doctorId !== null && this.appointment.doctorId !== '') &&
+                        (this.appointment.doctorName !== null && this.appointment.doctorName !== '') &&
+                        (this.appointment.ownerName !== null && this.appointment.ownerName !== '') &&
+                        (this.appointment.reason !== null && this.appointment.reason !== '')
+                    ) {
                         this.appointment.date = new Date(this.date.getTime())
                         this.$emit('createNewAppointment',this.appointment);
                         this.appointment = {
@@ -84,6 +98,9 @@
                         }
                     } else {
                         this.isFieldsCorrect = false
+                        if (typeof this.date !== 'undefined' && this.date.getTime() > new Date().getTime()){
+                            this.isDateCorrect = true
+                        }
                     }
                 } else {
                     this.isDateCorrect = false
@@ -123,7 +140,7 @@
                 this.doctorOptions.push({
                     value: "",
                     disabled: true,
-                    hidden: true,
+                    hidden: false,
                     name: 'Select the doctor',
                 })
                 for (let i = 0; i < this.doctors.length; i++) {
@@ -161,6 +178,15 @@
 </script>
 
 <style scoped>
+    .error_input__container {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+    .error_input__text {
+        color: red;
+        font-size: 12px
+    }
     .appointment_create__form {
         display: flex;
         flex-direction: column;
@@ -174,5 +200,8 @@
     }
     .select {
         margin-top: 15px;
+    }
+    .dp__input {
+        font-size: 12px;
     }
 </style>

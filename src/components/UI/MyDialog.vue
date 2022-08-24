@@ -1,12 +1,17 @@
 <template>
     <div class="dialog" v-if="show" @click.stop="hideDialog">
+
         <div @click.stop class="dialog__content">
+            <div class="close_btn" @click="hideDialog">
+                <i class="fa-solid fa-x"></i>
+            </div>
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
+    import FontAwesomeIcon from "@fortawesome/vue-fontawesome";
     export default {
         name: "my-dialog",
         props: {
@@ -38,7 +43,15 @@
         background: white;
         min-height: 100px;
         min-width: 300px;
-        padding: 20px;
+        padding: 20px 50px;
+        border-radius: 5px;
+    }
+    .close_btn {
+        display: flex;
+        width: 100%;
+        justify-content: end;
+        margin: 0 0 25px 25px;
+        cursor: pointer;
     }
 
 </style>

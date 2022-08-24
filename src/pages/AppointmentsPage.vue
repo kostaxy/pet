@@ -75,7 +75,7 @@
                     {
                         value: "",
                         disabled: true,
-                        hidden: true,
+                        hidden: false,
                         name: 'Choose the sort field',
                     },
                     {

@@ -39,5 +39,6 @@
         font-family: 'Poppins', sans-serif !important;
         cursor: pointer;
         border-radius: 5px;
+        padding: 5px;
     }
 </style>

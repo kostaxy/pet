@@ -26,7 +26,10 @@
     #app {
         font-family: 'Poppins', sans-serif !important;
     }
-
+    input {
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 13px !important;
+    }
     * {
         margin: 0;
         padding: 0;
