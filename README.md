@@ -1,19 +1,8 @@
-# pet
+# Pet clinic
+<br>
+https://kostaxy.github.io/pet
+<br><br>
+The project was created using vue, vuex.
+<br><br>
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![vue](https://user-images.githubusercontent.com/39878949/186513613-b50598f8-4b03-4671-bccb-8eaa04851a83.png)
