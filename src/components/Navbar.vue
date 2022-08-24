@@ -6,7 +6,7 @@
             <nav-button @click="$router.push('/employee')">Doctors</nav-button>
         </div>
         <div>
-            <nav-button>Logout</nav-button>
+            <nav-button @click="$store.commit('logout')>Logout</nav-button>
         </div>
     </div>
 </template>
