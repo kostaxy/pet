@@ -25,6 +25,7 @@
             placeholder="Reason"
          />
         <my-select
+            class="select"
             v-model="selectedDoctor"
             :options="doctorOptions"
             placeholder="test"
@@ -49,6 +50,8 @@
     import '@vuepic/vue-datepicker/dist/main.css';
     import { ref } from 'vue';
     import MySelect from "./UI/MySelect";
+    import axios from 'axios';
+
     export default {
         components: {MySelect, MyInput, Datepicker},
         data() {
@@ -62,6 +65,7 @@
                     doctorName: null,
                     doctorId: null,
                 },
+                doctors: [],
                 selectedDoctor: '',
                 doctorOptions: [],
             }
@@ -77,7 +81,6 @@
                         this.appointment = {
                             doctorName: '',
                             reason: '',
-                            doctorName: '',
                         }
                     } else {
                         this.isFieldsCorrect = false
@@ -86,6 +89,33 @@
                     this.isDateCorrect = false
                 }
             },
+            async fetchDoctors() {
+                try {
+                    let response = await axios.get('https://run.mocky.io/v3/3526a901-6007-4f94-823b-24c5f87a49d2',{
+                        params: {
+                            _page: 1,
+                            _limit: 2
+                        }
+                    })
+
+                    //emulate _pages and _limit backend
+                    // let emulatedResponse = {
+                    //     data: []
+                    // }
+
+                    let doctor = null;
+                    for (let i = 0; i < response.data.length; i++) {
+                        doctor = {
+                            id: response.data[i].id,
+                            doctorName: response.data[i].firstName + ' ' + response.data[i].lastName
+                        }
+                        this.doctors.push(doctor)
+                    }
+
+                }catch (e) {
+                    alert('Error ' + e)
+                }
+            }
         },
         setup() {
 
@@ -96,21 +126,24 @@
             }
         },
         mounted() {
-            let employee = {
-                name: 'Michael Scott',
-                value: JSON.stringify({id: 1, firstName: 'Michael', lastName: 'Scott'}),
-            }
-            let employee2 = {
-                name: 'Michael2 Scott2',
-                value: JSON.stringify({id: 2, firstName: 'Michael2', lastName: 'Scott2'}),
-            }
-            this.doctorOptions.push(employee)
-            this.doctorOptions.push(employee2)
+            this.fetchDoctors().then(() => {
+                console.log(this.doctors)
+                let employee = null;
+                for (let i = 0; i < this.doctors.length; i++) {
+                    employee = {
+                        name: this.doctors[i].doctorName,
+                        value: JSON.stringify({id: this.doctors[i].id, doctorName: this.doctors[i].doctorName})
+                    }
+                    this.doctorOptions.push(employee)
+                }
+            });
+
+
         },
         watch: {
             selectedDoctor(doctor) {
                 const selDoctor = JSON.parse(doctor)
-                this.appointment.doctor = selDoctor.firstName + ' ' + selDoctor.lastName;
+                this.appointment.doctor = selDoctor.doctorName;
                 this.appointment.doctorId = selDoctor.id;
             }
         }
@@ -124,6 +157,12 @@
     }
     .btn__create {
         align-self: flex-end;
+        margin-top: 15px;
+    }
+    .input {
+        margin-top: 15px;
+    }
+    .select {
         margin-top: 15px;
     }
 </style>
