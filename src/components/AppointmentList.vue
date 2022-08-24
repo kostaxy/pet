@@ -1,6 +1,6 @@
 <template>
     <div v-if="appointments.length > 0" class="appointment_list">
-        <h3>list of appointments</h3>
+
         <transition-group
             name="appointment-list"
         >
@@ -14,12 +14,7 @@
         </transition-group>
 
     </div>
-    <div
-        v-else
-        class="empty_appointments__div"
-    >
-        <h3>appointments list is empty</h3>
-    </div>
+
 
 </template>
 

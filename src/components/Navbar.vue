@@ -1,12 +1,19 @@
 <template>
-    <div class="navbar">
-        <div></div>
+    <div
+        v-if="$store.state.isAuth"
+        class="navbar"
+    >
+        <div style="width: 112px"></div>
         <div class="navbar__buttons">
             <nav-button @click="$router.push('/appointments')">Appointments</nav-button>
             <nav-button @click="$router.push('/employee')">Doctors</nav-button>
         </div>
         <div>
-            <nav-button @click="$store.commit('logout')>Logout</nav-button>
+           <nav-button
+               @click="logout"
+           >
+               Logout
+           </nav-button>
         </div>
     </div>
 </template>
@@ -14,7 +21,13 @@
 <script>
     import NavButton from "./UI/NavbarButton";
     export default {
-        components: {NavButton}
+        components: {NavButton},
+        methods: {
+            logout(state) {
+                this.$store.commit('logout')
+                this.$router.push('/login')
+            }
+        }
     }
 </script>
 

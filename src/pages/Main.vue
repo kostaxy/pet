@@ -8,8 +8,16 @@
     import Navbar from "@/components/Navbar";
     export default {
         name: "Main",
-        components: {Navbar}
+        components: {Navbar},
+        beforeCreate () {
+            if (this.$store.state.isAuth) {
+                this.$router.push('/appointments')
+            } else {
+                this.$router.push('/login')
+            }
+        }
     }
+
 </script>
 
 <style scoped>

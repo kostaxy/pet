@@ -2,24 +2,31 @@ import {createStore} from "vuex";
 
 export default createStore({
     state: {
-        isAuth: false,
-        currentLogin: '',
-        currentRole: ''
+        isAuth: localStorage.getItem('isAuth') ? JSON.parse(localStorage.getItem('isAuth')) : false,
+        currentLogin: localStorage.getItem('currentLogin') ? localStorage.getItem('currentLogin') : '',
+        currentRole: localStorage.getItem('currentRole') ? localStorage.getItem('currentRole') : ''
     },
     getters: {
 
     },
     mutations: {
         loginUser(state, user){
-            state.isAuth = true
-            state.currentLogin = user.login;
-            state.currentRole = user.role;
+            localStorage.setItem('isAuth',true)
+            localStorage.setItem('currentLogin',user.login)
+            localStorage.setItem('currentRole',user.role)
+
+            state.isAuth = JSON.parse(localStorage.getItem('isAuth'));
+            state.currentLogin = localStorage.getItem('currentLogin');
+            state.currentRole = localStorage.getItem('currentRole');
         },
         logout(state) {
+            localStorage.setItem('isAuth',false)
+            localStorage.setItem('currentLogin','')
+            localStorage.setItem('currentRole','')
 
-            state.isAuth = false
-            state.currentLogin = ''
-            state.currentRole = ''
+            state.isAuth = JSON.parse(localStorage.getItem('isAuth'));
+            state.currentLogin = localStorage.getItem('currentLogin');
+            state.currentRole = localStorage.getItem('currentRole');
         }
     },
     actions: {

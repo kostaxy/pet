@@ -1,14 +1,20 @@
 <template>
-    <div>login page </div>
-    <my-button @click="authUser">login</my-button>
+    <div class="login__container">
+        <div class="login__content">
+            <h3>log in to use the system</h3>
+            <my-input>login</my-input>
+            <my-input>password</my-input>
+            <my-button @click="authUser">login</my-button>
+        </div>
+    </div>
 </template>
 
 <script>
     import MyButton from "@/components/UI/MyButton";
-    import {useStore} from "vuex";
+    import MyInput from "../components/UI/MyInput";
     export default {
         name: "LoginPage",
-        components: {MyButton},
+        components: {MyInput, MyButton},
         data() {
             return {
                 user: {
@@ -33,5 +39,17 @@
 </script>
 
 <style scoped>
-
+    .login__container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .login__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 400px;
+    }
 </style>

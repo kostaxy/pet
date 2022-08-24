@@ -1,5 +1,5 @@
 <template>
-    <navbar></navbar>
+    <navbar ></navbar>
     <div class="app">
         <router-view>
         </router-view>
@@ -31,9 +31,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-    }
-    .app {
-        padding: 15px;
     }
 
 </style>

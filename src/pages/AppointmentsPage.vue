@@ -1,13 +1,38 @@
 <template>
     <div>
-        <div>
-            <my-button @click="showDialog">
-                create appointment
-            </my-button>
-            <my-select
-                    v-model="selectedSort"
-                    :options="sortOptions"
-            />
+        <div
+            v-if="appointments.length > 0"
+            class="list_text"
+        >
+            <h3>list of appointments</h3>
+        </div>
+        <div
+            v-else
+            class="list_text"
+        >
+            <h3>appointments list is empty</h3>
+        </div>
+        <div class="actions_block">
+            <div
+                    v-if="appointments.length > 0"
+                    class="actions_content">
+                <my-select
+                        v-model="selectedSort"
+                        :options="sortOptions"
+                />
+                <my-button @click="showDialog">
+                    Create new
+                </my-button>
+
+            </div>
+            <div
+                v-else
+            >
+                <my-button @click="showDialog">
+                    Create new
+                </my-button>
+            </div>
+
         </div>
         <my-dialog v-model:show="dialogVisible">
             <appointment-form-create @createNewAppointment="createAppointment"></appointment-form-create>
@@ -47,6 +72,11 @@
                 isAppointmentsLoading: false,
                 selectedSort: '',
                 sortOptions: [
+                    {
+                        value: "",
+                        disabled: 'true',
+                        name: 'Choose the sort field',
+                    },
                     {
                         value: 'date',
                         name: "Date"
@@ -98,7 +128,20 @@
                         this.appointments.push(appointment)
                     }
 
-                }catch (e) {
+                        //non-internet
+                        /**********************************************************/
+                        // let appointment = null;
+                        // appointment = {
+                        //     id: 1,
+                        //     date: 1154654,
+                        //     ownerName: '1234334',
+                        //     animal: '12345',
+                        //     reason: '2134',
+                        //     doctor: '123456',
+                        // }
+                        // this.appointments.push(appointment)
+                        /*****************************************************/
+                } catch (e) {
                     alert('Error ' + e)
                 }
                 finally {
@@ -124,10 +167,20 @@
 </script>
 
 <style>
-
-    form {
+    .actions_block {
+        width: 100%;
+        margin-top: 10px;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
     }
-
+    .actions_content {
+        width: 600px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .list_text {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
 </style>

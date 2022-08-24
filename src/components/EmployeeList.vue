@@ -42,6 +42,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 15px;
     }
     .empty_employees__div {
         width: 100%;
