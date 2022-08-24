@@ -12,7 +12,10 @@
         <h3>employee list is empty</h3>
     </div>
 
-    <div class="actions_block">
+    <div
+        class="actions_block"
+        v-if="this.$store.state.currentRole === 'ROLE_ADMIN'"
+    >
         <div
                 v-if="employees.length > 0"
                 class="actions_content">

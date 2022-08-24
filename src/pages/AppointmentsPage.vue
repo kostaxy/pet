@@ -20,13 +20,16 @@
                         v-model="selectedSort"
                         :options="sortOptions"
                 />
-                <my-button @click="showDialog">
-                    Create new
-                </my-button>
-
+                <div
+                    v-if="this.$store.state.currentRole === 'ROLE_ADMIN' || this.$store.state.currentRole === 'ROLE_RECEPTION'"
+                >
+                    <my-button @click="showDialog">
+                        Create new
+                    </my-button>
+                </div>
             </div>
             <div
-                v-else
+                v-else-if="this.$store.state.currentRole === 'ROLE_ADMIN' || this.$store.state.currentRole === 'ROLE_RECEPTION'"
             >
                 <my-button @click="showDialog">
                     Create new
@@ -53,6 +56,7 @@
     import MyDialog from "@/components/UI/MyDialog";
     import MyButton from "@/components/UI/MyButton";
     import axios from 'axios';
+
     import MySelect from "@/components/UI/MySelect";
     import MyLoader from "@/components/UI/MyLoader";
 

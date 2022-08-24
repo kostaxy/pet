@@ -16,7 +16,10 @@
                 </div>
             </div>
 
-            <div class="action_buttons">
+            <div
+                v-if="this.$store.state.currentRole === 'ROLE_ADMIN'"
+                class="action_buttons"
+            >
                 <div
                         class="icon_btn"
                         @click="$emit('removeEmployee',employee)"

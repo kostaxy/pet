@@ -4,12 +4,15 @@
             <div class="date">
                 <b>Time:</b> <i>{{appointment.date.toLocaleString('ru-Ru')}}</i>
             </div>
-            <div class="action_buttons">
-                <div
-                    class="icon_btn"
-                >
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </div>
+            <div
+                class="action_buttons"
+                v-if="$store.state.role === 'ROLE_ADMIN'"
+            >
+<!--                <div-->
+<!--                    class="icon_btn"-->
+<!--                >-->
+<!--                    <i class="fa-regular fa-pen-to-square"></i>-->
+<!--                </div>-->
                 <div
                     class="icon_btn"
                     @click="$emit('removeAppointment',appointment)"
