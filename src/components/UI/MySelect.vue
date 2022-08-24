@@ -4,6 +4,7 @@
         <option
             v-for="option in options"
             :disabled="option.disabled ? true : false"
+            :hidden="option.hidden ? true : false"
             :key="option.value"
             :value="option.value"
         >

@@ -74,7 +74,8 @@
                 sortOptions: [
                     {
                         value: "",
-                        disabled: 'true',
+                        disabled: true,
+                        hidden: true,
                         name: 'Choose the sort field',
                     },
                     {

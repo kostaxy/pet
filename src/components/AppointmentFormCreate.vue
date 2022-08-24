@@ -115,6 +115,24 @@
                 }catch (e) {
                     alert('Error ' + e)
                 }
+            },
+            addDoctorsOptions() {
+                let employee = null;
+
+                //placeholder
+                this.doctorOptions.push({
+                    value: "",
+                    disabled: true,
+                    hidden: true,
+                    name: 'Select the doctor',
+                })
+                for (let i = 0; i < this.doctors.length; i++) {
+                    employee = {
+                        name: this.doctors[i].doctorName,
+                        value: JSON.stringify({id: this.doctors[i].id, doctorName: this.doctors[i].doctorName})
+                    }
+                    this.doctorOptions.push(employee)
+                }
             }
         },
         setup() {
@@ -127,15 +145,7 @@
         },
         mounted() {
             this.fetchDoctors().then(() => {
-                console.log(this.doctors)
-                let employee = null;
-                for (let i = 0; i < this.doctors.length; i++) {
-                    employee = {
-                        name: this.doctors[i].doctorName,
-                        value: JSON.stringify({id: this.doctors[i].id, doctorName: this.doctors[i].doctorName})
-                    }
-                    this.doctorOptions.push(employee)
-                }
+                this.addDoctorsOptions();
             });
 
 
