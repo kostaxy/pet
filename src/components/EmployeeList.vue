@@ -1,6 +1,5 @@
 <template>
     <div v-if="employees.length > 0" class="employee_list">
-        <h3>employee list</h3>
         <transition-group
                 name="employee-list"
         >
@@ -13,12 +12,6 @@
             />
         </transition-group>
 
-    </div>
-    <div
-            v-else
-            class="empty_employees__div"
-    >
-        <h3>employees list is empty</h3>
     </div>
 
 </template>

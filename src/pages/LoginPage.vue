@@ -2,9 +2,24 @@
     <div class="login__container">
         <div class="login__content">
             <h3>log in to use the system</h3>
-            <my-input>login</my-input>
-            <my-input>password</my-input>
-            <my-button @click="authUser">login</my-button>
+            <my-input
+                placeholder="login"
+                type="text"
+                class="login_input"
+                v-model="user.login"
+            >login</my-input>
+            <my-input
+                type="password"
+                placeholder="password"
+                class="login_input"
+                v-model="user.password"
+            >password</my-input>
+            <my-button
+                class="login_btn"
+                @click="authUser"
+            >
+                login
+            </my-button>
         </div>
     </div>
 </template>
@@ -18,8 +33,9 @@
         data() {
             return {
                 user: {
-                    login: 'a',
-                    role: 'b'
+                    login: '',
+                    password: '',
+                    role: ''
                 }
             }
         },
@@ -27,9 +43,11 @@
             authUser() {
                 // const store = useStore();
 
+
+                this.$store.commit('loginUser', this.user)
+
                 this.user.login = 'admin'
                 this.user.role = 'admin'
-                this.$store.commit('loginUser', this.user)
             },
             fetchUsers() {
                 let url = 'https://run.mocky.io/v3/5c2b188f-0f96-4a04-826b-2bc10f83a3f8'
@@ -50,6 +68,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 400px;
+        width: 250px;
+    }
+    .login_input {
+        margin-top: 10px;
+    }
+    .login_btn {
+        margin-top: 10px;
     }
 </style>

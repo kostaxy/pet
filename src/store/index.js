@@ -4,10 +4,10 @@ export default createStore({
     state: {
         isAuth: localStorage.getItem('isAuth') ? JSON.parse(localStorage.getItem('isAuth')) : false,
         currentLogin: localStorage.getItem('currentLogin') ? localStorage.getItem('currentLogin') : '',
-        currentRole: localStorage.getItem('currentRole') ? localStorage.getItem('currentRole') : ''
+        currentRole: localStorage.getItem('currentRole') ? localStorage.getItem('currentRole') : '',
+        mewImageUrl: 'https://i.pravatar.cc/300',
     },
     getters: {
-
     },
     mutations: {
         loginUser(state, user){

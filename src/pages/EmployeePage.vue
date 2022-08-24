@@ -1,10 +1,46 @@
 <template>
+    <div
+            v-if="employees.length > 0"
+            class="list_text"
+    >
+        <h3>employee list</h3>
+    </div>
+    <div
+            v-else
+            class="list_text"
+    >
+        <h3>employee list is empty</h3>
+    </div>
+
+    <div class="actions_block">
+        <div
+                v-if="employees.length > 0"
+                class="actions_content">
+            <my-button @click="showDialog">
+                Create new
+            </my-button>
+
+        </div>
+        <div
+                v-else
+        >
+            <my-button @click="showDialog">
+                Create new
+            </my-button>
+        </div>
+
+    </div>
     <employee-list
             v-if="!this.isEmployeesLoading"
             @removeEmployee="removeEmployee"
             :employees="employees"
-    ></employee-list>
+    >
+
+    </employee-list>
     <my-loader v-else>is loading</my-loader>
+    <my-dialog v-model:show="dialogVisible">
+        <employee-form-create @createNewEmployee="createEmployee"></employee-form-create>
+    </my-dialog>
 </template>
 
 <script>
@@ -15,9 +51,11 @@
     import MyDialog from "@/components/UI/MyDialog";
     import AppointmentFormCreate from "@/components/AppointmentFormCreate";
     import EmployeeList from "@/components/EmployeeList";
+    import EmployeeFormCreate from "@/components/EmployeeFormCreate";
 
     export default {
         components: {
+            EmployeeFormCreate,
             EmployeeList,
             MyLoader,
             MySelect,
@@ -34,7 +72,8 @@
         },
         methods: {
             createEmployee(employee) {
-                this.employee.push(employee)
+                console.log(employee)
+                this.employees.push(employee)
                 this.dialogVisible = false
             },
             removeEmployee(employee){
@@ -85,5 +124,20 @@
 </script>
 
 <style scoped>
-
+    .actions_block {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .actions_content {
+        width: 600px;
+        display: flex;
+        justify-content: end;
+    }
+    .list_text {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
 </style>
